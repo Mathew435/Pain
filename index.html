@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cramp Comfort Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>The Period Pain Scale of Doom</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Creepster&family=Monoton&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,19 +14,21 @@
         }
 
         body {
-            font-family: 'Comfortaa', cursive;
-            background: #fff5f7;
+            font-family: 'Creepster', cursive;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d0a0a 25%, #4a0a0a 50%, #2d0a0a 75%, #1a0a0a 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            color: #ff00ff;
         }
 
         /* Floating background elements */
-        .floating-hearts {
+        .floating-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -35,65 +38,107 @@
             z-index: 1;
         }
 
-        .heart {
+        .floating-element {
             position: absolute;
-            color: rgba(255, 193, 211, 0.3);
-            font-size: 20px;
-            animation: float 6s ease-in-out infinite;
+            font-size: 24px;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.6;
         }
 
-        .heart:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .heart:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
-        .heart:nth-child(3) { top: 60%; left: 5%; animation-delay: 4s; }
-        .heart:nth-child(4) { top: 80%; right: 10%; animation-delay: 1s; }
-        .heart:nth-child(5) { top: 40%; left: 80%; animation-delay: 3s; }
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { top: 60%; left: 5%; animation-delay: 4s; }
+        .floating-element:nth-child(4) { top: 80%; right: 10%; animation-delay: 1s; }
+        .floating-element:nth-child(5) { top: 40%; left: 80%; animation-delay: 3s; }
+        .floating-element:nth-child(6) { top: 70%; left: 70%; animation-delay: 5s; }
+        .floating-element:nth-child(7) { top: 30%; right: 5%; animation-delay: 6s; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .warning-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff6600, #ff0000);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            animation: flicker 2s ease-in-out infinite;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
+            background: rgba(20, 5, 5, 0.9);
+            border: 3px solid #ff00ff;
+            border-radius: 15px;
             padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(107, 28, 61, 0.1);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             position: relative;
             z-index: 2;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 193, 211, 0.3);
+            margin-top: 60px;
+        }
+
+        .container.shake {
+            animation: shake 0.5s ease-in-out;
         }
 
         h1 {
-            color: #6b1c3d;
-            margin-bottom: 35px;
-            font-size: 1.8rem;
-            font-weight: 600;
-            line-height: 1.3;
+            color: #ff00ff;
+            margin-bottom: 10px;
+            font-family: 'Monoton', cursive;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px #ff00ff;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #00ff00;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00ff00;
         }
 
         .emoji-container {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 35px;
+            gap: 15px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
         }
 
         .emoji-btn {
-            background: #ffe6ec;
-            border: 2px solid transparent;
-            border-radius: 20px;
-            padding: 15px;
-            font-size: 1.8rem;
+            background: linear-gradient(135deg, #2a0a0a 0%, #4a0a0a 100%);
+            border: 2px solid #ff00ff;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 2.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(107, 28, 61, 0.1);
-            min-width: 65px;
-            min-height: 65px;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            min-width: 80px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,7 +153,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.3), transparent);
             transition: left 0.5s;
         }
 
@@ -117,31 +162,31 @@
         }
 
         .emoji-btn:hover {
-            transform: scale(1.05);
-            background: #ffc1d3;
-            box-shadow: 0 8px 25px rgba(107, 28, 61, 0.15);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+            border-color: #00ff00;
         }
 
         .emoji-btn:active {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .emoji-btn.selected {
-            background: #ffc1d3;
-            border-color: #6b1c3d;
-            box-shadow: 0 6px 20px rgba(107, 28, 61, 0.2);
+            background: linear-gradient(135deg, #4a0a0a 0%, #6a0a0a 100%);
+            border-color: #00ff00;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
         }
 
         .message-box {
-            background: #ffeaf0;
-            border-radius: 20px;
+            background: rgba(30, 5, 5, 0.9);
+            border: 2px solid #ff6600;
+            border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease;
-            border-left: 4px solid #6b1c3d;
-            box-shadow: 0 5px 15px rgba(107, 28, 61, 0.1);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
         }
 
         .message-box.show {
@@ -150,48 +195,65 @@
         }
 
         .message-text {
-            color: #6b1c3d;
+            color: #ff6600;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            font-family: 'Creepster', cursive;
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        .emergency-btn {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            border: 2px solid #ffffff;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-family: 'Bangers', cursive;
             font-size: 1.1rem;
-            line-height: 1.6;
-            font-style: italic;
-            font-weight: 400;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            margin: 20px 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .emergency-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
         }
 
         .tip-btn {
-            background: linear-gradient(135deg, #ffc1d3 0%, #ffe6ec 100%);
-            border: none;
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            border: 2px solid #ffffff;
             border-radius: 25px;
             padding: 15px 30px;
-            font-family: 'Comfortaa', cursive;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #6b1c3d;
+            font-family: 'Bangers', cursive;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #000000;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(107, 28, 61, 0.1);
-            margin-top: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            margin: 20px 10px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         }
 
         .tip-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(107, 28, 61, 0.15);
-            background: linear-gradient(135deg, #ffb3c7 0%, #ffc1d3 100%);
-        }
-
-        .tip-btn:active {
-            transform: translateY(0);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
         }
 
         .tip-box {
-            background: #ffeaf0;
-            border-radius: 20px;
+            background: rgba(30, 5, 5, 0.9);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
             padding: 20px;
             margin-top: 20px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s ease;
-            border-left: 4px solid #6b1c3d;
-            box-shadow: 0 5px 15px rgba(107, 28, 61, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
         }
 
         .tip-box.show {
@@ -200,115 +262,179 @@
         }
 
         .tip-text {
-            color: #6b1c3d;
-            font-size: 1rem;
+            color: #00ff00;
+            font-size: 1.1rem;
             line-height: 1.5;
-            font-style: italic;
+            font-family: 'Creepster', cursive;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .tracking-panel {
+            background: rgba(30, 5, 5, 0.9);
+            border: 2px solid #ff00ff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .tracking-panel.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tracking-title {
+            color: #ff00ff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-family: 'Bangers', cursive;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+        }
+
+        .tracking-entry {
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin: 5px 0;
+            font-family: 'Creepster', cursive;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
         @media (max-width: 480px) {
             .container {
                 padding: 30px 20px;
+                margin-top: 80px;
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
             }
 
             .emoji-container {
-                gap: 8px;
+                gap: 10px;
             }
 
             .emoji-btn {
-                min-width: 55px;
-                min-height: 55px;
-                font-size: 1.5rem;
-                padding: 12px;
+                min-width: 60px;
+                min-height: 60px;
+                font-size: 2rem;
+                padding: 15px;
             }
 
             .message-text, .tip-text {
                 font-size: 1rem;
             }
+
+            .warning-banner {
+                font-size: 1rem;
+                padding: 8px;
+            }
         }
 
         @media (max-width: 360px) {
             .emoji-container {
-                gap: 6px;
+                gap: 8px;
             }
 
             .emoji-btn {
                 min-width: 50px;
                 min-height: 50px;
-                font-size: 1.3rem;
-                padding: 10px;
+                font-size: 1.5rem;
+                padding: 12px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-hearts">
-        <div class="heart">🌸</div>
-        <div class="heart">💖</div>
-        <div class="heart">🌺</div>
-        <div class="heart">💕</div>
-        <div class="heart">🌷</div>
+    <div class="warning-banner">
+        ⚠️ Do Not Disturb: Internal Organs Are On Fire ⚠️
     </div>
 
-    <div class="container">
-        <h1>How are you feeling right now?</h1>
+    <div class="floating-elements">
+        <div class="floating-element">💀</div>
+        <div class="floating-element">💊</div>
+        <div class="floating-element">🔥</div>
+        <div class="floating-element">😤</div>
+        <div class="floating-element">💀</div>
+        <div class="floating-element">💊</div>
+        <div class="floating-element">🔥</div>
+    </div>
+
+    <div class="container" id="container">
+        <h1>The Period Pain Scale of Doom</h1>
+        <div class="subtitle">Select your current pain level before the world ends.</div>
         
         <div class="emoji-container">
-            <button class="emoji-btn" data-level="1" data-emoji="😊">😊</button>
-            <button class="emoji-btn" data-level="2" data-emoji="🙂">🙂</button>
-            <button class="emoji-btn" data-level="3" data-emoji="😐">😐</button>
-            <button class="emoji-btn" data-level="4" data-emoji="😣">😣</button>
-            <button class="emoji-btn" data-level="5" data-emoji="😫">😫</button>
+            <button class="emoji-btn" data-level="1" data-emoji="😐">😐</button>
+            <button class="emoji-btn" data-level="2" data-emoji="😖">😖</button>
+            <button class="emoji-btn" data-level="3" data-emoji="😵">😵</button>
+            <button class="emoji-btn" data-level="4" data-emoji="💢">💢</button>
+            <button class="emoji-btn" data-level="5" data-emoji="💀">💀</button>
         </div>
 
         <div class="message-box" id="message-box">
             <div class="message-text" id="message-text"></div>
         </div>
 
-        <button class="tip-btn" id="tip-btn">Give Me a Random Tip</button>
+        <button class="emergency-btn" id="emergency-btn">Call an Ambulance (just kidding)</button>
+        <button class="tip-btn" id="tip-btn">Mood Tip of the Day</button>
         
         <div class="tip-box" id="tip-box">
             <div class="tip-text" id="tip-text"></div>
         </div>
+
+        <div class="tracking-panel" id="tracking-panel">
+            <div class="tracking-title">Daily Pain Log (Your Suffering Timeline)</div>
+            <div id="tracking-entries"></div>
+        </div>
     </div>
 
     <script>
-        const comfortMessages = {
-            1: "You're doing great! Keep sipping water 🌈💧",
-            2: "A little discomfort, but you're stronger 🌸",
-            3: "Hang in there. Stretch, rest, or a warm drink might help ☕",
-            4: "Oof. Try a heat pad and cozy up 🫂",
-            5: "Cramps on full blast? Sending healing vibes and hugs 💖🩷"
+        const doomMessages = {
+            1: "Cramps? Barely tickles. You could fight a bear right now.",
+            2: "Okay… it's starting. Consider sacrificing a chocolate bar.",
+            3: "Functionality dropping to 40%. Sarcasm increasing by 200%.",
+            4: "Pain Level: Might punch someone. Don't test me.",
+            5: "If I die, delete my browser history."
         };
 
-        const comfortTips = [
-            "Try lying on your side in the fetal position 🛌",
-            "A banana might help if you're low on magnesium 🍌",
-            "Skip the cold drinks today 💧🚫",
-            "Gentle yoga stretches can help ease the pain 🧘‍♀️",
-            "A warm bath with Epsom salts might soothe you 🛁",
-            "Try some gentle belly breathing exercises 🫁",
-            "A heating pad on your lower back can work wonders 🔥",
-            "Stay hydrated with warm herbal tea 🍵",
-            "Light walking can help with circulation 🚶‍♀️",
-            "Try the butterfly pose for hip opening 🦋",
-            "A magnesium supplement might help 💊",
-            "Gentle massage on your lower abdomen 👐",
-            "Avoid salty foods that cause bloating 🧂",
-            "Try some gentle pelvic tilts 🏃‍♀️",
-            "A hot water bottle is your best friend 🫖"
+        const moodTips = [
+            "If mood swings had a face, it would punch yours.",
+            "Somewhere, chocolate is watching you suffer.",
+            "Pain is temporary. Drama is forever.",
+            "Your uterus is having a rave party without you.",
+            "Cramps: Nature's way of saying 'surprise!'",
+            "Today's mood: Chaotic neutral with a side of rage.",
+            "Your pain tolerance is higher than your ex's standards.",
+            "Periods: Making strong women stronger since forever.",
+            "If cramps were a person, they'd be that toxic friend.",
+            "Your body is basically a horror movie right now.",
+            "Pain level: Existential crisis with cramps.",
+            "Your uterus is doing the electric slide on your nerves.",
+            "Mood: Spicy, like your personality when in pain.",
+            "Cramps are just your body's way of keeping you humble.",
+            "Today's forecast: Pain with a chance of more pain."
         ];
 
         const emojiButtons = document.querySelectorAll('.emoji-btn');
         const messageBox = document.getElementById('message-box');
         const messageText = document.getElementById('message-text');
+        const emergencyBtn = document.getElementById('emergency-btn');
         const tipBtn = document.getElementById('tip-btn');
         const tipBox = document.getElementById('tip-box');
         const tipText = document.getElementById('tip-text');
+        const container = document.getElementById('container');
+        const trackingPanel = document.getElementById('tracking-panel');
+        const trackingEntries = document.getElementById('tracking-entries');
+
+        // Load tracking data from localStorage
+        let painLog = JSON.parse(localStorage.getItem('painLog')) || [];
 
         // Emoji button click handler
         emojiButtons.forEach(button => {
@@ -319,24 +445,45 @@
                 // Add selected class to clicked button
                 this.classList.add('selected');
                 
-                // Get the pain level
+                // Get the pain level and emoji
                 const painLevel = this.getAttribute('data-level');
+                const emoji = this.getAttribute('data-emoji');
                 
                 // Update message text
-                messageText.textContent = comfortMessages[painLevel];
+                messageText.textContent = doomMessages[painLevel];
                 
                 // Show message with fade-in effect
                 messageBox.classList.remove('show');
                 setTimeout(() => {
                     messageBox.classList.add('show');
                 }, 50);
+
+                // Add shake animation for level 5
+                if (painLevel === '5') {
+                    container.classList.add('shake');
+                    setTimeout(() => {
+                        container.classList.remove('shake');
+                    }, 500);
+                }
+
+                // Log the pain level
+                logPainLevel(painLevel, emoji);
             });
+        });
+
+        // Emergency button click handler
+        emergencyBtn.addEventListener('click', function() {
+            messageText.textContent = "No one's coming. You're on your own, champ.";
+            messageBox.classList.remove('show');
+            setTimeout(() => {
+                messageBox.classList.add('show');
+            }, 50);
         });
 
         // Tip button click handler
         tipBtn.addEventListener('click', function() {
             // Get random tip
-            const randomTip = comfortTips[Math.floor(Math.random() * comfortTips.length)];
+            const randomTip = moodTips[Math.floor(Math.random() * moodTips.length)];
             
             // Update tip text
             tipText.textContent = randomTip;
@@ -347,6 +494,47 @@
                 tipBox.classList.add('show');
             }, 50);
         });
+
+        // Function to log pain level
+        function logPainLevel(level, emoji) {
+            const entry = {
+                level: level,
+                emoji: emoji,
+                timestamp: new Date().toLocaleString(),
+                message: doomMessages[level]
+            };
+
+            // Add to beginning of array (most recent first)
+            painLog.unshift(entry);
+
+            // Keep only last 10 entries
+            if (painLog.length > 10) {
+                painLog = painLog.slice(0, 10);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('painLog', JSON.stringify(painLog));
+
+            // Update display
+            updateTrackingDisplay();
+        }
+
+        // Function to update tracking display
+        function updateTrackingDisplay() {
+            if (painLog.length > 0) {
+                trackingEntries.innerHTML = '';
+                painLog.forEach(entry => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'tracking-entry';
+                    entryDiv.innerHTML = `${entry.emoji} Level ${entry.level}: ${entry.message} <br><small>${entry.timestamp}</small>`;
+                    trackingEntries.appendChild(entryDiv);
+                });
+                trackingPanel.classList.add('show');
+            }
+        }
+
+        // Initialize tracking display
+        updateTrackingDisplay();
     </script>
 </body>
 </html> 
